@@ -31,7 +31,14 @@ public class Arctic extends PApplet {
 
     @Override
     public void draw() {
-        ellipse(200f,200f,50f,50f);
+        clear();
+        for (int i = 1; i < 10; i++) {
+            float x = width * (0.5f+0.5f*sin(1.32f*i + millis() * 0.01f));
+            float y = height * (0.5f+0.5f* sin(1.72f*i + 13.123f + millis() * 0.012f));
+            float s = 40 + i * 10;
+            fill(x % 255, y % 255, s % 255);
+            ellipse(x, y, s, s);
+        }
 
     }
 
