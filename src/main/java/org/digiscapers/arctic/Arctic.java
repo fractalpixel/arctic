@@ -56,17 +56,17 @@ public class Arctic extends PApplet {
 
         textSize(50);
         fill(100, 100, 255);
-        if (t > 12000 && t < 16000) text("Pre-Compo Production", width/4, height - height/2);
-        color((int)(255*sin(t*0.1f)*0.5f+0.5f), 255, 255);
+        if (t > 12000 && t < 16000) text("Pre-Compo Production", width/4, height * 0.3f);
+        fill((int)((int)(100*sin(t*0.1f))), 120, 255);
         textSize(100 * umts);
         float disturb = 0f;
         if (t > 24000) disturb = (t - 24000f) / 10000f;
         float tx = disturb * sin(t * 0.017f) * width;
         float ty = disturb * cos(t * 0.013f) * height;
-        if (t > 15000 && t < 30000) text("* SFÄÄRIMATO *", width/8 + tx, height - height/3 + ty);
-        color(100, 255, 255);
+        if (t > 15000 && t < 30000) text("* SFÄÄRIMATO *", width/8 + tx, height * 0.5f + ty);
+        fill(50, 100, 220);
         textSize(50);
-        if (t > 17000 && t < 22000) text("Aiming for LAST PLACE!", width/4, height - height/4);
+        if (t > 17000 && t < 22000) text("Aiming for LAST PLACE!", width/4, height * 0.7f);
         if (t > 35000) exit();
     }
 
