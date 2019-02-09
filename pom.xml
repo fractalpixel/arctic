@@ -31,15 +31,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Unit testing - probably not needed..
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        -->
-
         <!-- Processing library -->
         <dependency>
             <groupId>org.processing</groupId>
