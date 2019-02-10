@@ -68,10 +68,10 @@ public class Sfäärimato extends PApplet {
         float introStart = 0;
         float introEnd = 35;
         float palloStart = introEnd - 6;
-        float palloEnd = palloStart + 25;
-        float spaceStart = palloEnd - 12;
+        float palloEnd = palloStart + 30;
+        float spaceStart = palloEnd - 10;
         float spaceEnd = spaceStart + 50;
-        float demoEnd = spaceEnd + 2;
+        float demoEnd = spaceEnd + 0;
 
         // Palloavaruus! (draw under previous effects)
         if (timeBetween(spaceStart, spaceEnd)) {
@@ -166,8 +166,7 @@ public class Sfäärimato extends PApplet {
 
         twistee.setAmplitude(twister.get());
         float levels = lerp(1.5f, 4.5f, relativeTime);
-        float palloRadius = r * lerp(0.1f, 0.7f, relativeTime);
-        if (relativeTime > 0.95) palloRadius *= map(relativeTime, 0.95f, 1, 1, 7f);
+        float palloRadius = r * fadeInOut(relativeTime, 0.1f, 0.5f, 0f, 0.9f, 0.1f, 0f);
         float twistScale = lerp(0.3f, 1.6f, relativeTime);
         float palloScale = 0.8f + 0.3f*twister.get();
         häröpallo(x, y, palloRadius, palloScale, twistee.get(), levels, twistScale, hue, sat, brightness, alpha);
