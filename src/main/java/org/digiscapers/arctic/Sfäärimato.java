@@ -46,7 +46,6 @@ public class Sfäärimato extends PApplet {
         // DEBUG: Jump to desired time
        // setTimeSeconds(30);
 
-
     }
 
     @Override
@@ -55,8 +54,8 @@ public class Sfäärimato extends PApplet {
 
         float introStart = 0;
         float introEnd = 35;
-        float palloStart = introEnd - 5;
-        float palloEnd = palloStart + 24;
+        float palloStart = introEnd - 6;
+        float palloEnd = palloStart + 25;
         float demoEnd = palloEnd + 1;
 
         // Häröpallo stage!  (Draw under intro as it fades in from underneath)
