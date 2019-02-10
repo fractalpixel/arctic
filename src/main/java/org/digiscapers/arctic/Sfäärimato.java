@@ -69,7 +69,7 @@ public class Sfäärimato extends PApplet {
         float introEnd = 35;
         float palloStart = introEnd - 6;
         float palloEnd = palloStart + 30;
-        float spaceStart = palloEnd - 10;
+        float spaceStart = palloEnd - 13;
         float spaceEnd = spaceStart + 50;
         float demoEnd = spaceEnd + 0;
 
@@ -235,7 +235,7 @@ public class Sfäärimato extends PApplet {
         // Colors are hue, sat, brightness, alpha, range 0..100f.
         colorMode(HSB, 1f);
 
-        int ballNum = (int) fadeInOut(relativeTime, 0, 200, 200, 0.6f, 0.1f, 0);
+        int ballNum = (int) fadeInOut(relativeTime, 20, 200, 200, 0.5f, 0.1f, 0.1f);
 
         // Adjust number of balls
         while (avaruusPallot.size() < ballNum) {
