@@ -11,7 +11,8 @@ import processing.core.PApplet;
  *
  *            Coming to a bonus stage near you soon!
  *
- *              (Stand by for our next demo, KRISTALLISÄTEILY at Assembly 2019! Or 2029!)
+ *              (Stand by for our next demo, KRISTALLISÄTEILY at Assembly 2019! Or 2029!
+ *               and ASTRAALIAURA at the next one!)
  *
  */
 public class Sfäärimato extends PApplet {
@@ -102,7 +103,7 @@ public class Sfäärimato extends PApplet {
         textSize(50);
         fill(100, 100, 255);
         if (time > 12 && time < 16) text("Rajatietotekniikka presents", width*0.15f, height * 0.3f);
-        fill(((int)(100*sin(time*10f))), 120, 255);
+        fill(((int)(120*sin(time*10f))), 120, 255);
         textSize(100 * umts);
         float disturb = 0f;
         if (time > 24) disturb = (time - 24f) / 15f;
@@ -110,8 +111,8 @@ public class Sfäärimato extends PApplet {
         float ty = disturb * cos(time * 13f);
         if (time > 15 && time < 30) text("⛯* SFÄÄRIMATO *⛯", width * (0.08f+ tx) - umts*50f+50, height * (0.5f + ty)- umts*50f+50);
         fill(30, 50, 200);
-        textSize(50);
-        if (time > 17 && time < 20) text("And the BONUS STAGE!", width*0.2f, height * 0.7f);
+        textSize(40);
+        if (time > 17 && time < 25) text("Ja Homeopaattinen Harmonia", width*0.1f, height * 0.7f);
     }
 
 
