@@ -21,7 +21,9 @@ public class Arctic extends PApplet {
     public void settings() {
 // UNCOMMENT FOR COMPO VERSION!!
 //        size(1920, 1080, P3D);
-        size(1920/2, 1080/2, P3D);
+        size(1366, 768, P3D);
+        fullScreen(P3D);
+        randomSeed(8719);
     }
 
     long startTime = 0;
@@ -30,6 +32,13 @@ public class Arctic extends PApplet {
     public void setup() {
         background(0.5f);
         startTime = millis();
+
+        noSmooth();
+        noCursor();
+        noStroke();
+
+
+        rectMode(CENTER);
     }
 
     @Override

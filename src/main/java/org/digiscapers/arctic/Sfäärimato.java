@@ -29,9 +29,10 @@ public class Sfäärimato extends PApplet {
 
     @Override
     public void settings() {
+        // Running this with P2D
 // UNCOMMENT FOR COMPO VERSION!!
-//        size(1920, 1080, P3D);
-        size(1200, 800, P3D);
+//        size(1920, 1080, P2D);
+        size(1200, 800, P2D);
     }
 
     @Override
