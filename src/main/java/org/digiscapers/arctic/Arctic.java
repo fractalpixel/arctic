@@ -2,6 +2,9 @@ package org.digiscapers.arctic;
 
 import processing.core.PApplet;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Main entry point to demo.
  * Uses processing library.
@@ -28,6 +31,8 @@ public class Arctic extends PApplet {
 
     long startTime = 0;
 
+    List<DemoEffect> effects = new ArrayList<DemoEffect>();
+
     @Override
     public void setup() {
         background(0.5f);
@@ -41,11 +46,21 @@ public class Arctic extends PApplet {
         rectMode(CENTER);
     }
 
+    private void setupDemo() {
+        effects.add(new Sky());
+    }
+
     @Override
     public void draw() {
         clear();
 
+
         // TODO: Serious things here.  3D scenes and stuff.
+
+        for (DemoEffect effect : effects) {
+            effect.draw();
+        }
+
     }
 
 }

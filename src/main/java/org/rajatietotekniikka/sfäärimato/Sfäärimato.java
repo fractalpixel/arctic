@@ -1,5 +1,6 @@
-package org.digiscapers.arctic;
+package org.rajatietotekniikka.sfäärimato;
 
+import org.digiscapers.arctic.SinPulsar;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
