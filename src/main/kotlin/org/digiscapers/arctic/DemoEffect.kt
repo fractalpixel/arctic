@@ -22,7 +22,12 @@ abstract class DemoEffect {
 
     fun init(surface: Sfäärimato) {
         this.p = surface
+        setup(p)
     }
+
+
+
+    abstract fun setup(p: Sfäärimato)
 
     fun setDuration(startSeconds: Float, lengthSeconds: Float) {
         this.startSeconds = startSeconds

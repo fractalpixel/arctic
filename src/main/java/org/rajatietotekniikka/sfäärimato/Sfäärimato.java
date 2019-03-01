@@ -37,7 +37,7 @@ public class Sfäärimato extends PApplet {
         // Running this with P2D
 // UNCOMMENT FOR COMPO VERSION!!
 //        size(1920, 1080, P2D);
-        size(1920, 1080, P2D);
+        size(1200, 700, P2D);
         //fullScreen();
     }
 
@@ -59,10 +59,10 @@ public class Sfäärimato extends PApplet {
 //        setTimeSeconds(120);
 
         // Setup effects
-        effects.addEffect(0f, 35f, new IntroStage());
+        //effects.addEffect(0f, 35f, new IntroStage());
         effects.addEffect(29f, 30f, new Häröpallot());
         effects.addEffect(46f, 50f, new PalloAvaruus());
-        effects.addEffect(90f, 20f, new ShieraSfääri());
+        effects.addEffect(0f, 20f, new ShieraSfääri());
         effects.addEffect(110f, 20f, new IrahSfäärit());
 
         // TODO: Add more awesome SFÄÄRIMATO stages!

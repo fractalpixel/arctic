@@ -2,6 +2,8 @@ package org.rajatietotekniikka.sfäärimato.effektit;
 
 import org.digiscapers.arctic.DemoEffect;
 import org.digiscapers.arctic.SinPulsar;
+import org.jetbrains.annotations.NotNull;
+import org.rajatietotekniikka.sfäärimato.Sfäärimato;
 
 /**
  *
@@ -13,6 +15,11 @@ public class Häröpallot extends DemoEffect {
     SinPulsar xWobble = new SinPulsar(14.3f, 0.03f, 1f, 0.7f, 0.82f);
     SinPulsar yWobble = new SinPulsar(15.7f, 0.03f, 1f, 0.6f, 0.23f);
     SinPulsar colorWobble = new SinPulsar(10.7f, 0.2f, 1f, 1f);
+
+
+    public void setup(@NotNull Sfäärimato p) {
+
+    }
 
     public void updateAndDraw(float relativeTime, float deltaTime, float elapsedEffectTime) {
         bump.setWaveTime(p.lerp(5, 1, relativeTime));

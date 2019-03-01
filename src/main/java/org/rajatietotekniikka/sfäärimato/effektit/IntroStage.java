@@ -1,11 +1,17 @@
 package org.rajatietotekniikka.sfäärimato.effektit;
 
 import org.digiscapers.arctic.DemoEffect;
+import org.jetbrains.annotations.NotNull;
+import org.rajatietotekniikka.sfäärimato.Sfäärimato;
 
 /**
  * Matooooo!
  */
 public class IntroStage extends DemoEffect {
+
+    public void setup(@NotNull Sfäärimato p) {
+
+    }
 
     public void updateAndDraw(float relativeEffectTime, float deltaTime, float elapsedEffectTime) {
         // This one uses RGB colors still

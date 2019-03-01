@@ -1,6 +1,8 @@
 package org.rajatietotekniikka.sfäärimato.effektit;
 
 import org.digiscapers.arctic.DemoEffect;
+import org.jetbrains.annotations.NotNull;
+import org.rajatietotekniikka.sfäärimato.Sfäärimato;
 
 import java.util.ArrayList;
 
@@ -10,6 +12,10 @@ import java.util.ArrayList;
 public class PalloAvaruus extends DemoEffect {
 
     ArrayList<AvaruusPallo> avaruusPallot = new ArrayList<AvaruusPallo>();
+
+    public void setup(@NotNull Sfäärimato p) {
+
+    }
 
     public void updateAndDraw(float relativeEffectTime, float deltaTime, float elapsedEffectTime) {
 
