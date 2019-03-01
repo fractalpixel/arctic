@@ -39,6 +39,8 @@ public class Häröpallot extends DemoEffect {
         float alpha = p.lerp(0.15f, 0.35f, relativeTime);
         p.fill(hue, sat, brightness, alpha);
         p.noStroke();
+        int color = p.color(0.2f, 0.2f, 0.2f);
+
         //ellipse(x, y, r, r);
 
         twistee.setAmplitude(twister.get());

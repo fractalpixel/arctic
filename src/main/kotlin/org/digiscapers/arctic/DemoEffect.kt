@@ -1,4 +1,4 @@
-package org.digiscapers.arctic
+                                       package org.digiscapers.arctic
 
 import org.rajatietotekniikka.sfäärimato.Sfäärimato
 import processing.core.PConstants.HSB
@@ -9,8 +9,10 @@ import java.util.*
  * Also has duration and such.
  */
 abstract class DemoEffect {
-    var startSeconds: Float = 0f
-    var endSeconds: Float = 30f
+    var overlapWithPrevious: Float = 0f
+    var durationSeconds: Float = 20f
+
+    var startTimeSeconds: Float = -1f
 
     var elapsedEffectTime: Float = 0f
     var deltaTime: Float = 1f / 60f
@@ -25,17 +27,23 @@ abstract class DemoEffect {
         setup(p)
     }
 
+    val started get() = startTimeSeconds >= 0f
 
+    fun startDemo(currentTime: Float) {
+        if (!started) {
+            startTimeSeconds = currentTime
+        }
+    }
+
+    val startSeconds: Float get() = startTimeSeconds
+    val endSeconds: Float get() = startSeconds + durationSeconds
 
     abstract fun setup(p: Sfäärimato)
 
-    fun setDuration(startSeconds: Float, lengthSeconds: Float) {
-        this.startSeconds = startSeconds
-        this.endSeconds = startSeconds + lengthSeconds
-    }
-
     fun handleUpdate(currentTime: Float,
                      deltaTime: Float = 1f / 60f) {
+
+        if (!started) return
 
         if (currentTime in startSeconds..endSeconds) {
             this.deltaTime = deltaTime

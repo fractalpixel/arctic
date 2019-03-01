@@ -41,6 +41,7 @@ public class Sfäärimato extends PApplet {
         //fullScreen();
     }
 
+
     @Override
     public void setup() {
         noCursor();
@@ -60,10 +61,10 @@ public class Sfäärimato extends PApplet {
 
         // Setup effects
         //effects.addEffect(0f, 35f, new IntroStage());
-        effects.addEffect(29f, 30f, new Häröpallot());
-        effects.addEffect(46f, 50f, new PalloAvaruus());
-        effects.addEffect(0f, 20f, new ShieraSfääri());
-        effects.addEffect(110f, 20f, new IrahSfäärit());
+        effects.addEffect(5f, 60f, new ShieraSfääri());
+        effects.addEffect(0f, 30f, new Häröpallot());
+        effects.addEffect(5f, 50f, new PalloAvaruus());
+        effects.addEffect(5f, 20f, new IrahSfäärit());
 
         // TODO: Add more awesome SFÄÄRIMATO stages!
     }
@@ -175,6 +176,12 @@ public class Sfäärimato extends PApplet {
 
         float t = value - start;
         return t / (end - start);
+    }
+
+    public float clampToZeroToOne(float value) {
+        if (value < 0) return 0f;
+        if (value > 1) return 1f;
+        return value;
     }
 
     public float smoothInterpolate(float a, float b, float t) {

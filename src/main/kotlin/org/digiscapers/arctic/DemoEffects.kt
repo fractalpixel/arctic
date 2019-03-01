@@ -22,11 +22,12 @@ class DemoEffects(val surface: Sfäärimato,
         relativeTime = System.currentTimeMillis()
     }
 
-    fun addEffect(startTimeSeconds: Float = 0f,
+    fun addEffect(overlapWithPrevious: Float = 0f,
                   durationSeconds: Float = 30f,
                   demoEffect: DemoEffect) {
         demoEffect.init(surface)
-        demoEffect.setDuration(startTimeSeconds, durationSeconds)
+        demoEffect.durationSeconds = durationSeconds
+        demoEffect.overlapWithPrevious = overlapWithPrevious
         effects.add(demoEffect)
     }
 
@@ -39,7 +40,16 @@ class DemoEffects(val surface: Sfäärimato,
 
         val demoTime = getTimeSeconds()
 
-        // Draw effects
+        // Start effects if necessary
+        var t = 0f
+        for (effect in effects) {
+            // Start if if necessary
+            if (surface.timeSeconds > t - effect.overlapWithPrevious) effect.startDemo(surface.timeSeconds)
+
+            t += effect.durationSeconds
+        }
+
+        // Draw effects (next ones under previous one)
         for (effect in effects.reversed()) {
             effect.handleUpdate(demoTime, frameDurationSeconds)
         }
