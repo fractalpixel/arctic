@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class ShieraSfääri extends DemoEffect {
 
     ArrayList<PallomeriPallo> pallomeri = new ArrayList<PallomeriPallo>();
-    int pallomaara = 10000;
+    int pallomaara = 100;
 
     public void setup(@NotNull Sfäärimato p) {
         for (int i = 0; i < pallomaara; i++) {
@@ -44,7 +44,7 @@ public class ShieraSfääri extends DemoEffect {
         float wavephase = (float)(x/p.width*Math.PI*2 + 0.001* p.randomGaussian());
 
         float kuohuvuus = 0;
-
+        float minave = 1;
 
         void updateAndDraw(float timeFromStart) {
             float per = (float)(wavephase+timeFromStart*2*Math.PI/wavetime);
@@ -55,12 +55,14 @@ public class ShieraSfääri extends DemoEffect {
             float wavestokes = (float)((1-1/16*Math.pow((k*waveSize),2))*Math.cos(per) + 0.5*k*waveSize*Math.cos(2*per));
             float wavestokesBefore = (float)((1-1/16*Math.pow((k*waveSize),2))*Math.cos(perBefore) + 0.5*k*waveSize*Math.cos(2*perBefore));
             float waveY = waveSize*(float)Math.pow(wavestokes,1);
+            minave = Math.min(waveY, minave);
             float y = startY+waveY;
+
 
             x -= (speed);
             if (x < -50) x = p.width +50;
-
-            float ballSize = (float) (size *waveY);
+            float absMinwave = Math.abs(minave);
+            float ballSize = (float) (size *(1-(waveY+minave)/minave));
 
             float kuohumäärä = p.map(-wavestokesBefore, 0.7f, 1f, 0, 1);
 
