@@ -1,6 +1,6 @@
 package org.digiscapers.arctic
 
-import processing.core.PApplet
+import org.rajatietotekniikka.sfäärimato.Sfäärimato
 import java.util.*
 
 /**
@@ -21,7 +21,7 @@ open class SfääriJärjestelmä @JvmOverloads constructor(
             r.nextGaussian().toFloat(),
             r.nextGaussian().toFloat(),
             r.nextGaussian().toFloat(),
-            size = r.nextFloat() * 0.5f,
+            size = r.nextFloat() * 0.05f,
             hue = r.nextFloat())
     }) {
 
@@ -30,16 +30,16 @@ open class SfääriJärjestelmä @JvmOverloads constructor(
     private var nextId = 1
     private var random = Random()
 
-    init {
+    fun init(pinta: Sfäärimato) {
         for (i in 1 .. alkumäärä) {
-            luoPallo()
+            luoPallo(pinta)
         }
     }
 
     /**
      * Update and draw balls, can also adjust number of balls.
      */
-    fun updateAndDraw(pinta: PApplet,
+    fun updateAndDraw(pinta: Sfäärimato,
                       deltaTime: Float = 1f / 60f,
                       palloMäärä: Int = 10) {
 
@@ -53,7 +53,12 @@ open class SfääriJärjestelmä @JvmOverloads constructor(
 
         // Add new if needed
         while (sfäärit.size < targetNum) {
-            luoPallo()
+            luoPallo(pinta)
+        }
+
+        // Any overridden updates
+        for (sfääri in sfäärit) {
+            updateBall(pinta, sfääri)
         }
 
         // Update all
@@ -61,9 +66,15 @@ open class SfääriJärjestelmä @JvmOverloads constructor(
             sfääri.updateAndDraw(pinta, deltaTime)
         }
 
+
     }
 
-    protected fun luoPallo(): Sfääri {
+    protected open fun updateBall(pinta: Sfäärimato,
+                                  ball: Sfääri) {
+
+    }
+
+    protected fun luoPallo(pinta: Sfäärimato): Sfääri {
         val id = nextId++
         random.setSeed(id.toLong())
         random.setSeed(random.nextLong())
@@ -71,7 +82,13 @@ open class SfääriJärjestelmä @JvmOverloads constructor(
         val pallo = palloTehdas(id, random)
         sfäärit.add(pallo)
 
+        initBall(pinta, pallo)
+
         return pallo
+    }
+
+    protected open fun initBall(p: Sfäärimato, ball: Sfääri) {
+
     }
 
     protected fun poistaPallo(): Sfääri {
