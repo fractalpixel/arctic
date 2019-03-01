@@ -36,8 +36,8 @@ public class Sfäärimato extends PApplet {
     public void settings() {
         // Running this with P2D
 // UNCOMMENT FOR COMPO VERSION!!
-        size(1920, 1080, P2D);
-//        size(1200, 700, P2D);
+//        size(1920, 1080, P2D);
+        size(1200, 700, P2D);
         //fullScreen();
     }
 
