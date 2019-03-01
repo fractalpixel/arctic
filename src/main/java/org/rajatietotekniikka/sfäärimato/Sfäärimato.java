@@ -41,7 +41,6 @@ public class Sfäärimato extends PApplet {
         //fullScreen();
     }
 
-
     @Override
     public void setup() {
         noCursor();
@@ -176,12 +175,6 @@ public class Sfäärimato extends PApplet {
 
         float t = value - start;
         return t / (end - start);
-    }
-
-    public float clampToZeroToOne(float value) {
-        if (value < 0) return 0f;
-        if (value > 1) return 1f;
-        return value;
     }
 
     public float smoothInterpolate(float a, float b, float t) {
