@@ -62,11 +62,12 @@ public class Sfäärimato extends PApplet {
         // Setup effects
         //effects.addEffect(0f, 35f, new IntroStage());
         effects.addEffect(5f, 1000f, new ShieraSfääri());
+        effects.addEffect(1000f, 40f, new ScrolleriEffekti());
         effects.addEffect(5f, 30f, new Häröpallot());
         effects.addEffect(5f, 50f, new PalloAvaruus());
         effects.addEffect(5f, 20f, new IrahSfäärit());
 
-        // TODO: Add more awesome SFÄÄRIMATO stages!
+        // TODO: Add more awesome stages!
     }
 
     @Override
@@ -196,6 +197,20 @@ public class Sfäärimato extends PApplet {
         //float smoothStepT = t * t * (3f - 2f * t);
         float t2 = (1f - cos(t*PI)) / 2f;
         return lerp(a, b, t2);
+    }
+
+    /**
+     * Like map, but clamps the outputs
+     * @param t
+     * @param inputStat
+     * @param inputEnd
+     * @param outputStart
+     * @param outputEnd
+     * @return
+     */
+    public float mapAndClamp(float t, float inputStat, float inputEnd, float outputStart, float outputEnd) {
+        float relativePos = clampToZeroToOne(relativePos(t, inputStat, inputEnd));
+        return lerp(outputStart, outputEnd, relativePos);
     }
 
 }
