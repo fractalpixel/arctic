@@ -7,13 +7,14 @@ import org.rajatietotekniikka.sfäärimato.Sfäärimato
  * Handles timing.
  */
 class DemoEffects(val surface: Sfäärimato,
-                  var demoEndTime: Float = 60f) {
+                  var lastEffectEndToDemoEndSeconds: Float = 5f) {
 
     val effects = ArrayList<DemoEffect>()
 
     private var relativeTime: Long = 0
     private var lastFrameTime = System.currentTimeMillis()
 
+    private var endTimeSeconds = -1f
 
     var demoStartTime: Long = 0
     var frameDurationSeconds = 0.001f
@@ -44,7 +45,7 @@ class DemoEffects(val surface: Sfäärimato,
         var t = 0f
         for (effect in effects) {
             // Start if if necessary
-            if (surface.timeSeconds > t - effect.overlapWithPrevious) effect.startDemo(surface.timeSeconds)
+            if (demoTime > t - effect.overlapWithPrevious) effect.startDemo(demoTime)
 
             t += effect.durationSeconds
         }
@@ -54,8 +55,16 @@ class DemoEffects(val surface: Sfäärimato,
             effect.handleUpdate(demoTime, frameDurationSeconds)
         }
 
-        // Check if we should end demo
-        if (getTimeSeconds() > demoEndTime) surface.exit()
+        // Set end time if all effects ended and we didn't set it yet
+        if (endTimeSeconds < 0 && effects.all { it.ended }) {
+            endTimeSeconds = demoTime + lastEffectEndToDemoEndSeconds
+        }
+
+        // Should we end
+        if (endTimeSeconds >= 0 && demoTime > endTimeSeconds) {
+            // Exit
+            surface.exit()
+        }
     }
 
     /**

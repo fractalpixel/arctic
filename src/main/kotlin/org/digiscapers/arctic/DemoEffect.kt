@@ -28,6 +28,7 @@ abstract class DemoEffect {
     }
 
     val started get() = startTimeSeconds >= 0f
+    val ended get() = elapsedEffectTime > durationSeconds
 
     fun startDemo(currentTime: Float) {
         if (!started) {

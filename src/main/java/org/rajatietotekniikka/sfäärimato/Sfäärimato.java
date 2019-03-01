@@ -41,14 +41,15 @@ public class Sfäärimato extends PApplet {
         //fullScreen();
     }
 
+
     @Override
     public void setup() {
         noCursor();
         background(0.5f);
         startTime = millis();
 
-        float demoEndTime = 120f;
-        effects = new DemoEffects(this, demoEndTime);
+        float lastEffectEndToDemoEndSeconds = 5f;
+        effects = new DemoEffects(this, lastEffectEndToDemoEndSeconds);
 
 
         // NOTE: Colors are now given as Hue, Saturation, Brightness, (Alpha),
@@ -60,8 +61,8 @@ public class Sfäärimato extends PApplet {
 
         // Setup effects
         //effects.addEffect(0f, 35f, new IntroStage());
-        effects.addEffect(5f, 60f, new ShieraSfääri());
-        effects.addEffect(0f, 30f, new Häröpallot());
+        effects.addEffect(5f, 10f, new ShieraSfääri());
+        effects.addEffect(5f, 30f, new Häröpallot());
         effects.addEffect(5f, 50f, new PalloAvaruus());
         effects.addEffect(5f, 20f, new IrahSfäärit());
 
@@ -175,6 +176,16 @@ public class Sfäärimato extends PApplet {
 
         float t = value - start;
         return t / (end - start);
+    }
+
+    public float clampToZeroToOne(float value) {
+        return clamp(value, 0f, 1f);
+    }
+
+    public float clamp(float value, float minValue, float maxValue) {
+        if (value < minValue) return minValue;
+        if (value > maxValue) return maxValue;
+        return value;
     }
 
     public float smoothInterpolate(float a, float b, float t) {
