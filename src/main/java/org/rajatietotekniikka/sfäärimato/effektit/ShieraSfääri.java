@@ -173,6 +173,8 @@ public class ShieraSfääri extends DemoEffect {
                 speed = -speed*1.1f;
                 wavetime = wavetime*3/4;
 
+                //size += 0.2f;
+
             }
 
 
