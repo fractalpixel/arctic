@@ -172,6 +172,35 @@ public class Sfäärimato extends PApplet {
         }
     }
 
+    /**
+     * @param t goes from 0 to 1 and controls the value produced
+     * @param startValue value when t <= 0
+     * @param midValue value after t >= startRampLength and while t <= 1 - endRampLength
+     * @param endValue value when t >= 1
+     * @param startRampLength length of transition from start to mid value
+     * @param endRampLength length of transition from mid to end value.
+     * @param startDelay t value before starting first ramp
+     * @param endDelay delays the end
+     * @return smoothly interpolated value
+     */
+    public float fadeInOut(float t, float startValue, float midValue, float endValue, float startRampLength, float endRampLength, float startDelay, float endDelay) {
+        if (t <= startDelay) {
+            return startValue;
+        }
+        else if (t> 1f-endDelay){
+            return endValue;
+        }
+        else if (t <= startDelay + startRampLength) {
+            return smoothInterpolate(startValue, midValue, relativePos(t, startDelay, startDelay + startRampLength));
+        }
+        else if (t > startDelay + startRampLength && t < (1f - endRampLength-endDelay)) {
+            return midValue;
+        }
+        else {
+            return smoothInterpolate(midValue, endValue, relativePos(t, 1f - endRampLength- endDelay, 1f-endDelay));
+        }
+    }
+
 
     public float relativePos(float value, float start, float end) {
         if (end == start) return 0.5f;
