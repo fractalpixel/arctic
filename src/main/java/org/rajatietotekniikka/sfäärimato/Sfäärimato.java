@@ -62,7 +62,7 @@ public class Sfäärimato extends PApplet {
         // Setup effects
 ///        effects.addEffect(0f, 35f, new IntroStage());
 //        effects.addEffect(0f, 30f, new Häröpallot());
-        //effects.addEffect(0f, 50f, new SplatterBalls());
+        effects.addEffect(0f, 50f, new SplatterBalls());
         //effects.addEffect(49f, 50f, new PalloAvaruus());
         //effects.addEffect(30f, 50f, new ScrolleriEffekti());
         effects.addEffect(5f, 50f, new PallomeriEfekti());
