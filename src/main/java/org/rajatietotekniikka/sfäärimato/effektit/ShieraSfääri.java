@@ -84,7 +84,7 @@ public class ShieraSfääri extends DemoEffect {
         float speed = (p.random(2f, 10f))*scaling;
         float hue = 0.62f + 0.01f * p.randomGaussian();
         float sat = 0 + 0.05f * p.randomGaussian();
-        float lum = 0.3f + 0.1f * p.randomGaussian();
+        float lum = 0.25f + 0.1f * p.randomGaussian();
 
 
         float x =  p.random(-50,p.width +50 );
@@ -132,9 +132,9 @@ public class ShieraSfääri extends DemoEffect {
     public class Pallokaarme {
         float size =70*scaling;
         float speed = 220*scaling;
-        float hue = 0.35f + 0.01f * p.randomGaussian();
-        float sat = 0.55f + 0.05f * p.randomGaussian();
-        float lum = 0.45f + 0.05f * p.randomGaussian();
+        float hue = 0.38f + 0.01f * p.randomGaussian();
+        float sat = 0.65f + 0.05f * p.randomGaussian();
+        float lum = 0.55f + 0.05f * p.randomGaussian();
         float startY = p.height-p.height/4;
         float startX = p.width/5;
         float wavetime = 5*scaling;
@@ -245,9 +245,9 @@ public class ShieraSfääri extends DemoEffect {
     public class PallomeriPallo {
         float size = (13f +7 * p.randomGaussian())*scaling;
         float speed = scaling*(p.random(2.5f, 3f));
-        float hue = 0.62f + 0.01f * p.randomGaussian();
-        float sat = 0.55f + 0.05f * p.randomGaussian();
-        float lum = 0.5f + 0.05f * p.randomGaussian();
+        float hue = 0.65f + 0.01f * p.randomGaussian();
+        float sat = 0.6f + 0.05f * p.randomGaussian();
+        float lum = 0.45f + 0.05f * p.randomGaussian();
 
 
         float x =  p.random(-50,p.width +50 );
