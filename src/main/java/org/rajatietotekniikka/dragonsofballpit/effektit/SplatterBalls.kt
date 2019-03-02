@@ -10,10 +10,10 @@ import java.util.*
  *
  */
 class SplatterBalls(val fileBaseName: String = "splat",
-                    val numberOfFiles: Int = 17,
+                    val numberOfFiles: Int = 20,
                     val startDelay: Float = 0.2f,
-                    val splatBallScale: Float = 0.66f,
-                    val splatCount: Int = 70000): DemoEffect() {
+                    val splatBallScale: Float = 0.7f,
+                    val splatCount: Int = 30000): DemoEffect() {
 
 
     lateinit var sampler: SampledImage
@@ -39,7 +39,7 @@ class SplatterBalls(val fileBaseName: String = "splat",
     override fun setup(p: Demo) {
 
         // Create sampler
-        sampler = SampledImage(p, fileBaseName + "_0.png", imageSize)
+        sampler = SampledImage(p, fileBaseName + "_1.png", imageSize)
 
         // Create splats
         for(i in 0..splatCount) {

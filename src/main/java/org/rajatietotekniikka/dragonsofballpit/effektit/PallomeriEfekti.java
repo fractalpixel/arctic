@@ -21,7 +21,7 @@ import java.util.Random;
 public class PallomeriEfekti extends DemoEffect {
 
     ArrayList<PallomeriPallo> pallomeri = new ArrayList<PallomeriPallo>();
-    int pallomaara = 17000;
+    int pallomaara = 12000;
     ArrayList<PallomeriPallo> pallomeri2 = new ArrayList<PallomeriPallo>();
     ArrayList<PallomeriPallo> pallomeri3 = new ArrayList<PallomeriPallo>();
     ArrayList<Pallomyrsky> pallopilvi = new ArrayList<Pallomyrsky>();
@@ -243,7 +243,7 @@ public class PallomeriEfekti extends DemoEffect {
     }
 
     public class PallomeriPallo {
-        float size = (13f +7 * p.randomGaussian())*scaling;
+        float size = (16f +7 * p.randomGaussian())*scaling;
         float speed = scaling*(p.random(2.5f, 3f));
         float hue = 0.65f + 0.01f * p.randomGaussian();
         float sat = 0.6f + 0.05f * p.randomGaussian();

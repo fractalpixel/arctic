@@ -46,9 +46,9 @@ public class Demo extends PApplet {
     public void settings() {
         // Running this with P2D
 // UNCOMMENT FOR COMPO VERSION!!
-//        size(1920, 1080, P2D);
-        size(1200, 700, P2D);
-        //fullScreen();
+        size(1920, 1080, P2D);
+//        size(1200, 700, P2D);
+        fullScreen();
     }
 
 
@@ -80,8 +80,8 @@ public class Demo extends PApplet {
         effects.addEffect(0f, 30f, new Häröpallot());
         effects.addEffect(2f, 50f, new ScrolleriEffekti());
         effects.addEffect(5f, 50f, new PallomeriEfekti());
-        effects.addEffect(10f, 60f, new SplatterBalls());
-        effects.addEffect(85f, 62f, new PalloAvaruus());
+        effects.addEffect(10f, 50f, new SplatterBalls());
+        effects.addEffect(82f, 80f, new PalloAvaruus());
         //
 //        effects.addEffect(5f, 20f, new IrahSfäärit());
 
@@ -96,7 +96,7 @@ public class Demo extends PApplet {
         effects.updateAndDraw();
 
         // End at something
-        if (getTimeSeconds() > 164 ) exit();
+        if (getTimeSeconds() > 170 ) exit();
     }
 
 
