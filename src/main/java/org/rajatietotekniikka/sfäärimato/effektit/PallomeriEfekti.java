@@ -18,7 +18,7 @@ import java.util.Random;
 
 
 
-public class ShieraSfääri extends DemoEffect {
+public class PallomeriEfekti extends DemoEffect {
 
     ArrayList<PallomeriPallo> pallomeri = new ArrayList<PallomeriPallo>();
     int pallomaara = 17000;
