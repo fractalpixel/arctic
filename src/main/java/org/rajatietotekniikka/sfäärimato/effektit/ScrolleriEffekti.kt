@@ -76,7 +76,7 @@ class ScrolleriEffekti(val filu: String = "scroller.png"): DemoEffect() {
     override fun updateAndDraw(relativeEffectTime: Float, deltaTime: Float, elapsedEffectTime: Float) {
         // Un-evenize scroll
         val flipPos = 0.45f
-        val scrollPos = p.fadeInOut(relativeEffectTime, 0f, 0.72f, 1f, flipPos, 1f - flipPos, 0f)
+        val scrollPos = p.fadeInOut(relativeEffectTime, 0f, 0.7f, 1f, flipPos, 1f - flipPos, 0f)
 
         //xPos = -relativeEffectTime * (image.width * 2 * scale + p.width) + image.width
         scrollerImage.xPos = (p.width * 1.2f) / scrollerImage.scale + -scrollPos * (scrollerImage.image.width /*+ (p.width* 1.4f) / scrollerImage.scale*/)
