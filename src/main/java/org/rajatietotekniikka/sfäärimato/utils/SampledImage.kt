@@ -1,6 +1,7 @@
 package org.rajatietotekniikka.sfäärimato.utils
 
 import org.rajatietotekniikka.sfäärimato.Sfäärimato
+import processing.core.PConstants
 import processing.core.PImage
 
 /**
@@ -38,13 +39,13 @@ class SampledImage(val surface: Sfäärimato,
             loaded = true
 
             try {
-                image = surface.loadImage(fileName)
+                image = surface.loadImage(fileName, "png")
             }
             catch (e: Exception) {
                 println("***************************")
                 println("** WARNING!!  Image not found: '$fileName': " + e.message)
                 println("***************************")
-                image = PImage(1, 1) // Just a placeholder to not crash things
+                image = PImage(1, 1, PConstants.ARGB) // Just a placeholder to not crash things
             }
             scale = (surface.height * scaleOfScreen) / image.height.toFloat()
         }
@@ -61,7 +62,7 @@ class SampledImage(val surface: Sfäärimato,
 
         return if (sampleX in 0 until image.width &&
             sampleY in 0 until image.height) {
-            image[sampleX, sampleY]
+            image.get(sampleX, sampleY)
         }
         else {
             backgroundColor

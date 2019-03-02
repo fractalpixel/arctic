@@ -11,20 +11,21 @@ import java.util.*
  */
 class SplatterBalls(val fileBaseName: String = "splat",
                     val numberOfFiles: Int = 2,
-                    val startDelay: Float = 0.2f): DemoEffect() {
+                    val startDelay: Float = 0.2f,
+                    val splatBallScale: Float = 0.5f): DemoEffect() {
 
 
     lateinit var sampler: SampledImage
 
 
-    val splatCount = 10000
+    val splatCount = 20000
 
     var imageSize = 0.5f
 
     var splatCyclePos = 0f
     var visibleSplatNum = 0
 
-    var splatterFocus = 0.4f
+    var splatterFocus = 0.1f
     var splatExpansion = 0.5f
     var splatSizes = 0.5f
     var splatAlpha = 0.5f
@@ -72,10 +73,11 @@ class SplatterBalls(val fileBaseName: String = "splat",
         */
 
 
+        // Load image if needed
+        ensureSplatLoaded(visibleSplatNum)
+
         // Update splat when it changes
         if (splatCyclePos < prevSplatterCycle) {
-            // Load image if needed
-            ensureSplatLoaded(visibleSplatNum)
 
             // Setup table for next splatter
             setupSplatter(visibleSplatNum)
@@ -104,7 +106,7 @@ class SplatterBalls(val fileBaseName: String = "splat",
         random.setSeed(random.nextLong())
 
         // Spread of this one
-        splatterFocus = 0.5f + 0.2f * random.nextGaussian().toFloat()
+        splatterFocus = 0.2f + 0.02f * random.nextGaussian().toFloat()
 
         // Fade to different color
         val fadeAwayHue = random.nextFloat()
@@ -112,7 +114,7 @@ class SplatterBalls(val fileBaseName: String = "splat",
 
         // Init random destination etc
         for (splat in splatter) {
-            splat.init(random)
+            splat.init(random, visibleSplatNum)
         }
 
     }
@@ -125,27 +127,38 @@ class SplatterBalls(val fileBaseName: String = "splat",
         var startRelY: Float = 0f
         var color: Int = 0
         var sizeFactor: Float = 0.01f
+        var rotations: Float = 0f
 
-        fun init(random: Random) {
-            targetRelX = host.splatterFocus * host.p.width * random.nextGaussian().toFloat()
-            targetRelY = host.splatterFocus * host.p.height * random.nextGaussian().toFloat()
-            startRelX = host.splatterFocus * host.p.width * random.nextGaussian().toFloat()
-            startRelY = host.splatterFocus * host.p.height * random.nextGaussian().toFloat()
+        fun init(random: Random, num: Int) {
+            targetRelX = host.p.width * (random.nextFloat() - 0.5f)
+            targetRelY = host.p.height * (random.nextFloat() - 0.5f)
+            startRelX = host.p.width * (random.nextFloat() - 0.5f)
+            startRelY = host.p.height * (random.nextFloat() - 0.5f)
             sizeFactor = 0.015f + 0.004f * random.nextGaussian().toFloat()
             color = host.sampler.sample(targetRelX + host.p.width / 2, targetRelY + host.p.height / 2)
+            rotations = if (num <= 0) 0f
+                       else 4f * random.nextGaussian().toFloat().toFloat()
         }
 
         fun draw() {
 
-            val sourceX = 0.2f * startRelX * host.splatExpansion + host.p.width / 2
-            val sourceY = 0.2f * startRelY * host.splatExpansion + host.p.height / 2
-            val targetX = targetRelX * host.splatExpansion + host.p.width / 2
-            val targetY = targetRelY * host.splatExpansion + host.p.height / 2
+            var sourceX = 0.1f * startRelX * host.splatExpansion
+            var sourceY = 0.1f * startRelY * host.splatExpansion
+            val targetX = targetRelX * host.splatExpansion
+            val targetY = targetRelY * host.splatExpansion
+
+            // Rotate transform backwards for extreme extrem
+            val a = rotations * Math.PI * 2f
+            val r = host.p.height * 0.3f
+            val rotXOffX = r * Math.cos(a).toFloat()
+            val rotXOffY = r * -Math.sin(a).toFloat()
+            sourceX += rotXOffX
+            sourceY += rotXOffY
 
             val x = PApplet.lerp(sourceX, targetX, host.splatSizes)
             val y = PApplet.lerp(sourceY, targetY, host.splatSizes)
 
-            val size = host.splatSizes * sizeFactor * host.p.height
+            val size = host.splatBallScale * host.splatSizes * sizeFactor * host.p.height
             /*
             println("host.splatSizes = ${host.splatSizes}")
             println("host.p.height = ${host.p.height}")
@@ -153,14 +166,15 @@ class SplatterBalls(val fileBaseName: String = "splat",
             println("size = ${size}")
             */
 
-            color = host.sampler.sample(targetRelX + host.p.width / 2, targetRelY + host.p.height / 2)
+            val sampledColor = host.sampler.sample(x  + host.p.width / 2, y  + host.p.height / 2)
+            color = host.p.lerpColor(color, sampledColor, 0.07f)
 
             val c = host.p.lerpColor(host.splatterFadeAwayColor, color, host.splatAlpha)
 
             // Alpha doesn't seemto be properly lerped or something?  mix in here:
             host.p.fill(host.p.hue(c), host.p.saturation(c), host.p.brightness(c), 0.8f * host.splatAlpha)
 
-            host.p.ellipse(x, y, size, size)
+            host.p.ellipse(x  + host.p.width / 2, y  + host.p.height / 2, size, size)
         }
 
     }
