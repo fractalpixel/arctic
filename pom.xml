@@ -38,6 +38,76 @@
             <version>3.3.7</version>
         </dependency>
 
+        <!-- Sound, damnit,add your libraries to maven processing!!
+        <dependency>
+            <groupId>org.processing</groupId>
+            <artifactId>processing-sound</artifactId>
+            <version>2.0.2</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/libs/sound.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.processing</groupId>
+            <artifactId>processing-sound-dep1</artifactId>
+            <version>2.0.2</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/libs/javamp3-1.0.3.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.processing</groupId>
+            <artifactId>processing-sound-dep2</artifactId>
+            <version>2.0.2</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/libs/jsyn-20171016.jar</systemPath>
+        </dependency>
+        -->
+
+        <!-- other music player lib didn'twork, trying other -->
+        <dependency>
+            <groupId>org.processing</groupId>
+            <artifactId>minim1</artifactId>
+            <version>1</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/libs/minim/jsminim.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.processing</groupId>
+            <artifactId>minim2</artifactId>
+            <version>1</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/libs/minim/minim.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.processing</groupId>
+            <artifactId>minim3</artifactId>
+            <version>1</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/libs/minim/mp3spi1.9.5.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.processing</groupId>
+            <artifactId>minim4</artifactId>
+            <version>1</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/libs/minim/tritonus_aos.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.processing</groupId>
+            <artifactId>minim5</artifactId>
+            <version>1</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/libs/minim/tritonus_share.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.processing</groupId>
+            <artifactId>minim6</artifactId>
+            <version>1</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/libs/minim/jl1.0.1.jar</systemPath>
+        </dependency>
+
+
+
 
         <!-- OpenGL bindings -->
         <dependency>

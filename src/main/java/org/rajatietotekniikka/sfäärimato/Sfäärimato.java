@@ -1,9 +1,11 @@
 package org.rajatietotekniikka.sfäärimato;
 
+import ddf.minim.Minim;
 import org.digiscapers.arctic.DemoEffects;
 import org.rajatietotekniikka.sfäärimato.effektit.PalloAvaruus;
 import org.rajatietotekniikka.sfäärimato.effektit.SplatterBalls;
 import processing.core.PApplet;
+
 
 /**
  * BONUS STAGE!  Unlock with MAD SKILLS!  This is an EASTER SPHERE!
@@ -23,6 +25,9 @@ public class Sfäärimato extends PApplet {
     long startTime = 0;
 
     DemoEffects effects;
+
+    // SoundFile soundFile;
+    Minim minim;
 
     /**
      * Called when program starts
@@ -52,6 +57,12 @@ public class Sfäärimato extends PApplet {
 
         float lastEffectEndToDemoEndSeconds = 5f;
         effects = new DemoEffects(this, lastEffectEndToDemoEndSeconds);
+
+        // Music
+        //soundFile = new SoundFile(this, "bleppis_fix.ogg");
+        //soundFile.play();
+        minim = new Minim(this);
+        minim.loadFile("bleppis.mp3").play();
 
 
         // NOTE: Colors are now given as Hue, Saturation, Brightness, (Alpha),
