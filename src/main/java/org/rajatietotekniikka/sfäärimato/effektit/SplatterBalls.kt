@@ -12,8 +12,8 @@ import java.util.*
 class SplatterBalls(val fileBaseName: String = "splat",
                     val numberOfFiles: Int = 3,
                     val startDelay: Float = 0.2f,
-                    val splatBallScale: Float = 0.92f,
-                    val splatCount: Int = 20000): DemoEffect() {
+                    val splatBallScale: Float = 0.75f,
+                    val splatCount: Int = 30000): DemoEffect() {
 
 
     lateinit var sampler: SampledImage
@@ -175,7 +175,7 @@ class SplatterBalls(val fileBaseName: String = "splat",
             val helpAlpha = host.p.mapAndClamp(host.p.brightness(c), 0.1f, 0.6f, 0f, 1f)
 
             // Alpha doesn't seemto be properly lerped or something?  mix in here:
-            host.p.fill(host.p.hue(c), host.p.saturation(c), host.p.brightness(c), 0.7f * helpAlpha * host.splatAlpha)
+            host.p.fill(host.p.hue(c), host.p.saturation(c), host.p.brightness(c), 0.66f * helpAlpha * host.splatAlpha)
 
             host.p.ellipse(x  + host.p.width / 2, y  + host.p.height / 2, size, size)
         }
