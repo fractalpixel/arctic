@@ -10,15 +10,15 @@ import java.util.*
  *
  */
 class SplatterBalls(val fileBaseName: String = "splat",
-                    val numberOfFiles: Int = 2,
+                    val numberOfFiles: Int = 3,
                     val startDelay: Float = 0.2f,
-                    val splatBallScale: Float = 0.5f): DemoEffect() {
+                    val splatBallScale: Float = 0.92f,
+                    val splatCount: Int = 20000): DemoEffect() {
 
 
     lateinit var sampler: SampledImage
 
 
-    val splatCount = 20000
 
     var imageSize = 0.5f
 
@@ -130,10 +130,10 @@ class SplatterBalls(val fileBaseName: String = "splat",
         var rotations: Float = 0f
 
         fun init(random: Random, num: Int) {
-            targetRelX = host.p.width * (random.nextFloat() - 0.5f)
-            targetRelY = host.p.height * (random.nextFloat() - 0.5f)
-            startRelX = host.p.width * (random.nextFloat() - 0.5f)
-            startRelY = host.p.height * (random.nextFloat() - 0.5f)
+            targetRelX = 0.7f * host.p.width * (random.nextFloat() - 0.5f + 0.2f*random.nextGaussian().toFloat())
+            targetRelY = 0.7f * host.p.height * (random.nextFloat() - 0.5f + 0.2f*random.nextGaussian().toFloat())
+            startRelX = 0.5f * host.p.width * (random.nextFloat() - 0.5f + 0.2f*random.nextGaussian().toFloat())
+            startRelY = 0.5f * host.p.height * (random.nextFloat() - 0.5f + 0.2f*random.nextGaussian().toFloat())
             sizeFactor = 0.015f + 0.004f * random.nextGaussian().toFloat()
             color = host.sampler.sample(targetRelX + host.p.width / 2, targetRelY + host.p.height / 2)
             rotations = if (num <= 0) 0f
@@ -171,8 +171,11 @@ class SplatterBalls(val fileBaseName: String = "splat",
 
             val c = host.p.lerpColor(host.splatterFadeAwayColor, color, host.splatAlpha)
 
+            // Get alpha from darkness
+            val helpAlpha = host.p.mapAndClamp(host.p.brightness(c), 0.1f, 0.6f, 0f, 1f)
+
             // Alpha doesn't seemto be properly lerped or something?  mix in here:
-            host.p.fill(host.p.hue(c), host.p.saturation(c), host.p.brightness(c), 0.8f * host.splatAlpha)
+            host.p.fill(host.p.hue(c), host.p.saturation(c), host.p.brightness(c), 0.7f * helpAlpha * host.splatAlpha)
 
             host.p.ellipse(x  + host.p.width / 2, y  + host.p.height / 2, size, size)
         }
