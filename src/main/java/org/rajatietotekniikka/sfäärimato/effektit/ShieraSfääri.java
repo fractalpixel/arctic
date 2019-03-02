@@ -132,8 +132,8 @@ public class ShieraSfääri extends DemoEffect {
     public class Pallokaarme {
         float size =70*scaling;
         float speed = 220*scaling;
-        float hue = 0.38f + 0.01f * p.randomGaussian();
-        float sat = 0.65f + 0.05f * p.randomGaussian();
+        float hue = 0.65f + 0.01f * p.randomGaussian();
+        float sat = 0.80f + 0.05f * p.randomGaussian();
         float lum = 0.55f + 0.05f * p.randomGaussian();
         float startY = p.height-p.height/4;
         float startX = p.width/5;
@@ -205,7 +205,7 @@ public class ShieraSfääri extends DemoEffect {
 
                         p.stroke(p.color(0.4f, 0.8f,0.3f, 0.5f));
                         random.setSeed(i);
-                        p.fill((float)(hue+0.005f*i+random.nextFloat()*0.005), sat, (float)(lum+random.nextFloat()*0.1f));
+                        p.fill((float)(hue+0.001f*i+random.nextFloat()*0.005), sat, (float)(lum+random.nextFloat()*0.1f));
                         float sizemap = p.mapAndClamp(wavesinUnit2, -1,1, 0.6f,1);
                         //float currentSegmentSize = sizeProfile.get(i);
                         float currentSegmentSize = sizeProfile.get(i)*sizemap;
