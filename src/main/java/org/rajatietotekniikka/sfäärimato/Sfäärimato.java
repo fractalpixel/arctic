@@ -63,8 +63,8 @@ public class Sfäärimato extends PApplet {
         //effects.addEffect(0f, 35f, new IntroStage());
        // effects.addEffect(0f, 30f, new Häröpallot());
        // effects.addEffect(20f, 50f, new PalloAvaruus());
-       // effects.addEffect(30f, 40f, new ScrolleriEffekti());
-        effects.addEffect(30f, 50f, new ShieraSfääri());
+        effects.addEffect(30f, 50f, new ScrolleriEffekti());
+        effects.addEffect(5f, 50f, new ShieraSfääri());
        // effects.addEffect(5f, 20f, new IrahSfäärit());
 
         // TODO: Add more awesome stages!
