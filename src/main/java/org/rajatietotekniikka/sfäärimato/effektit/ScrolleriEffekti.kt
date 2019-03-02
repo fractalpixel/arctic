@@ -36,15 +36,18 @@ class ScrolleriEffekti(val filu: String = "scroller.png"): DemoEffect() {
             ball.forceX = p.mapAndClamp(relativeEffectTime, 0f, 1f, -4f, 40f)
 
             // Darken colors
-            ball.hue *= 0.98f // Reddish fade
+            ball.hue *= 0.94f // Reddish fade
             ball.sat = Sfäärimato.lerp(ball.sat, 1f, 0.01f) // Saturate
             ball.lum *= 0.87f // Darken
-            ball.alpha *= 0.96f // Transparencify
+            ball.alpha *= 0.94f // Transparencify
+
+            // Fade at end
+            //ball.alpha *= p.mapAndClamp(relativeEffectTime, 0.9f, 1f, 1f, 0f)
 
             // Colorize with scroller
             val sample = scrollerImage.sample(ball.x, ball.y)
             val alpha = p.alpha(sample)
-            val keep = p.clampToZeroToOne(Sfäärimato.lerp(1f, 0.7f, alpha))
+            val keep = p.clampToZeroToOne(Sfäärimato.lerp(1f, 0.4f, alpha))
             ball.hue = if (alpha > 0.2f) p.hue(sample) else ball.hue //Sfäärimato.lerp(p.hue(sample), ball.hue, keep * 0.5f)
             ball.sat = Sfäärimato.lerp(p.saturation(sample), ball.sat, keep)
             ball.lum = Sfäärimato.lerp(p.brightness(sample), ball.lum, keep)
@@ -52,10 +55,10 @@ class ScrolleriEffekti(val filu: String = "scroller.png"): DemoEffect() {
             //ball.lum *= ball.alpha
 
             // Wrap around
-            if (ball.x > p.width + wrapMargin) ball.x = -wrapMargin
-            if (ball.x < -wrapMargin) ball.x = p.width + wrapMargin
-            if (ball.y > p.height + wrapMargin) ball.y = -wrapMargin
-            if (ball.y < -wrapMargin) ball.y = p.height + wrapMargin
+            if (ball.x > p.width + wrapMargin)  ball.x += -p.width -wrapMargin*2f
+            if (ball.x < -wrapMargin)           ball.x += +p.width +wrapMargin*2f
+            if (ball.y > p.height + wrapMargin) ball.y += -p.height -wrapMargin*2f
+            if (ball.y < -wrapMargin)           ball.y += +p.height +wrapMargin*2f
 
             // Fade in/out
             val alphaFade = p.fadeInOut(relativeEffectTime, 0f, 1f, 0f, 0.1f, 0.1f, 0f)
@@ -73,10 +76,10 @@ class ScrolleriEffekti(val filu: String = "scroller.png"): DemoEffect() {
     override fun updateAndDraw(relativeEffectTime: Float, deltaTime: Float, elapsedEffectTime: Float) {
         // Un-evenize scroll
         val flipPos = 0.45f
-        val scrollPos = p.fadeInOut(relativeEffectTime, 0f, 0.57f, 1f, flipPos, 1f - flipPos, 0f)
+        val scrollPos = p.fadeInOut(relativeEffectTime, 0f, 0.72f, 1f, flipPos, 1f - flipPos, 0f)
 
         //xPos = -relativeEffectTime * (image.width * 2 * scale + p.width) + image.width
-        scrollerImage.xPos = (p.width * 1.2f) / scrollerImage.scale + -scrollPos * (scrollerImage.image.width + (p.width* 1.4f) / scrollerImage.scale)
+        scrollerImage.xPos = (p.width * 1.2f) / scrollerImage.scale + -scrollPos * (scrollerImage.image.width /*+ (p.width* 1.4f) / scrollerImage.scale*/)
 
         p.noStroke()
 

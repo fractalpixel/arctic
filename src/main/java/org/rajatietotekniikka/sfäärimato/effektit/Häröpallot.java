@@ -53,7 +53,7 @@ public class Häröpallot extends DemoEffect {
 
     void häröpallo(float x, float y, float radius, float scale, float twist, float levels, float twistScale, float h, float s, float b, float a) {
 
-        h += 0.07f; // Wander
+        h += 0.13f; // Wander
         b *= 0.9f; // Darken
         s *= 1.1f;  // Intensify
 
