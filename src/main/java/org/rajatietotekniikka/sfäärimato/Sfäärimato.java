@@ -37,7 +37,7 @@ public class Sfäärimato extends PApplet {
         // Running this with P2D
 // UNCOMMENT FOR COMPO VERSION!!
 //        size(1920, 1080, P2D);
-        size((int)(1200*0.8), (int)(0.8*700), P2D);
+        size(1200, 700, P2D);
         //fullScreen();
     }
 
@@ -60,12 +60,13 @@ public class Sfäärimato extends PApplet {
 //        setTimeSeconds(120);
 
         // Setup effects
-        //effects.addEffect(0f, 35f, new IntroStage());
-       // effects.addEffect(0f, 30f, new Häröpallot());
-       // effects.addEffect(20f, 50f, new PalloAvaruus());
-        effects.addEffect(30f, 50f, new ScrolleriEffekti());
-        effects.addEffect(5f, 50f, new ShieraSfääri());
-       // effects.addEffect(5f, 20f, new IrahSfäärit());
+///        effects.addEffect(0f, 35f, new IntroStage());
+//        effects.addEffect(0f, 30f, new Häröpallot());
+        effects.addEffect(0f, 50f, new SplatterBalls());
+        effects.addEffect(49f, 50f, new PalloAvaruus());
+        effects.addEffect(30f, 40f, new ScrolleriEffekti());
+        effects.addEffect(30f, 50f, new ShieraSfääri());
+        effects.addEffect(5f, 20f, new IrahSfäärit());
 
         // TODO: Add more awesome stages!
     }
@@ -168,35 +169,6 @@ public class Sfäärimato extends PApplet {
         }
         else {
             return smoothInterpolate(midValue, endValue, relativePos(t, 1f - endRampLength, 1f));
-        }
-    }
-
-    /**
-     * @param t goes from 0 to 1 and controls the value produced
-     * @param startValue value when t <= 0
-     * @param midValue value after t >= startRampLength and while t <= 1 - endRampLength
-     * @param endValue value when t >= 1
-     * @param startRampLength length of transition from start to mid value
-     * @param endRampLength length of transition from mid to end value.
-     * @param startDelay t value before starting first ramp
-     * @param endDelay delays the end
-     * @return smoothly interpolated value
-     */
-    public float fadeInOut(float t, float startValue, float midValue, float endValue, float startRampLength, float endRampLength, float startDelay, float endDelay) {
-        if (t <= startDelay) {
-            return startValue;
-        }
-        else if (t> 1f-endDelay){
-            return endValue;
-        }
-        else if (t <= startDelay + startRampLength) {
-            return smoothInterpolate(startValue, midValue, relativePos(t, startDelay, startDelay + startRampLength));
-        }
-        else if (t > startDelay + startRampLength && t < (1f - endRampLength-endDelay)) {
-            return midValue;
-        }
-        else {
-            return smoothInterpolate(midValue, endValue, relativePos(t, 1f - endRampLength- endDelay, 1f-endDelay));
         }
     }
 

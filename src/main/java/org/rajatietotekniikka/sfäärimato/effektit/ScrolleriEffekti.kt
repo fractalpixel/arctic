@@ -4,18 +4,14 @@ import org.digiscapers.arctic.DemoEffect
 import org.digiscapers.arctic.Sfääri
 import org.digiscapers.arctic.SfääriJärjestelmä
 import org.rajatietotekniikka.sfäärimato.Sfäärimato
-import processing.core.PImage
+import org.rajatietotekniikka.sfäärimato.utils.SampledImage
 
 /**
  *
  */
-class ScrolleriEffekti(val filu: String = "helloworld.png"): DemoEffect() {
+class ScrolleriEffekti(val filu: String = "scroller.png"): DemoEffect() {
 
-    var scale = 6f
-    var xPos = 0f
-    var yPos = 0f
-
-    private lateinit var image: PImage
+    lateinit var scrollerImage: SampledImage
 
     private val pallot = object: SfääriJärjestelmä(0) {
 
@@ -46,7 +42,7 @@ class ScrolleriEffekti(val filu: String = "helloworld.png"): DemoEffect() {
             ball.alpha *= 0.96f // Transparencify
 
             // Colorize with scroller
-            val sample = sample(ball.x, ball.y)
+            val sample = scrollerImage.sample(ball.x, ball.y)
             val alpha = p.alpha(sample)
             val keep = p.clampToZeroToOne(Sfäärimato.lerp(1f, 0.7f, alpha))
             ball.hue = if (alpha > 0.2f) p.hue(sample) else ball.hue //Sfäärimato.lerp(p.hue(sample), ball.hue, keep * 0.5f)
@@ -68,9 +64,8 @@ class ScrolleriEffekti(val filu: String = "helloworld.png"): DemoEffect() {
     }
 
     override fun setup(p: Sfäärimato) {
-        image = p.loadImage(filu)
-
-        scale = p.height / image.height.toFloat()
+        scrollerImage = SampledImage(p, filu, 1f)
+        scrollerImage.load()
 
         pallot.init(p)
     }
@@ -81,28 +76,15 @@ class ScrolleriEffekti(val filu: String = "helloworld.png"): DemoEffect() {
         val scrollPos = p.fadeInOut(relativeEffectTime, 0f, 0.57f, 1f, flipPos, 1f - flipPos, 0f)
 
         //xPos = -relativeEffectTime * (image.width * 2 * scale + p.width) + image.width
-        xPos = (p.width * 1.2f) / scale + -scrollPos * (image.width + (p.width* 1.4f) / scale)
+        scrollerImage.xPos = (p.width * 1.2f) / scrollerImage.scale + -scrollPos * (scrollerImage.image.width + (p.width* 1.4f) / scrollerImage.scale)
 
         p.noStroke()
 
 
         //val pallomäärä = p.fadeInOut(relativeEffectTime, 0.1f, 1f, 0.3f, 0.2f, 0.2f, 0f)
         val pallomäärä = 1f
-        pallot.updateAndDraw(p, deltaTime, (12000 * pallomäärä).toInt())
+        pallot.updateAndDraw(p, deltaTime, (10000 * pallomäärä).toInt())
 
     }
 
-    fun sample(x: Float, y:Float): Int {
-        val sampleX = (x/scale - xPos).toInt()
-        val sampleY = (y/scale - yPos).toInt()
-
-        return if (sampleX in 0 until image.width &&
-                   sampleY in 0 until image.height) {
-            image[sampleX, sampleY]
-        }
-        else {
-            //p.color(x/ p.width, 1f, 0.5f)
-            p.color(0f)
-        }
-    }
 }

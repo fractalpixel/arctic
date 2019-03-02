@@ -19,7 +19,7 @@ public class PalloAvaruus extends DemoEffect {
 
     public void updateAndDraw(float relativeEffectTime, float deltaTime, float elapsedEffectTime) {
 
-        int ballNum = (int) p.fadeInOut(relativeEffectTime, 20, 200, 200, 0.5f, 0.1f, 0.1f);
+        int ballNum = (int) p.fadeInOut(relativeEffectTime, 0, 200, 200, 0.5f, 0.1f, 0f);
 
         // Adjust number of balls
         while (avaruusPallot.size() < ballNum) {
