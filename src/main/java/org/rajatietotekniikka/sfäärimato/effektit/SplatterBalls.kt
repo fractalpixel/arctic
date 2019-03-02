@@ -10,10 +10,10 @@ import java.util.*
  *
  */
 class SplatterBalls(val fileBaseName: String = "splat",
-                    val numberOfFiles: Int = 12,
+                    val numberOfFiles: Int = 14,
                     val startDelay: Float = 0.2f,
-                    val splatBallScale: Float = 0.75f,
-                    val splatCount: Int = 30000): DemoEffect() {
+                    val splatBallScale: Float = 0.66f,
+                    val splatCount: Int = 70000): DemoEffect() {
 
 
     lateinit var sampler: SampledImage
@@ -59,9 +59,9 @@ class SplatterBalls(val fileBaseName: String = "splat",
         splatCyclePos = (r * numberOfFiles) % 1f
 
         // Scale splat positions etc over splat cycle
-        splatExpansion = p.fadeInOut(splatCyclePos, 0f, 1f, 20f, 0.3f, 0.2f, 0.25f)
-        splatSizes = p.fadeInOut(splatCyclePos, 0f, 1f, 5f, 0.25f, 0.23f, 0.25f)
-        splatAlpha = p.fadeInOut(splatCyclePos, 0f, 1f, 0f, 0.15f, 0.1f, 0.25f)
+        splatExpansion = p.fadeInOut(splatCyclePos, 0f, 1f, 20f, 0.3f, 0.2f, 0.15f)
+        splatSizes = p.fadeInOut(splatCyclePos, 0f, 1f, 5f, 0.25f, 0.23f, 0.15f)
+        splatAlpha = p.fadeInOut(splatCyclePos, 0f, 1f, 0f, 0.15f, 0.1f, 0.15f)
 
         /*
         println("")
