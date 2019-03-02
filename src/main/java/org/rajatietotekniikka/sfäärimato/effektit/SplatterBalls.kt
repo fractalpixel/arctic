@@ -137,8 +137,8 @@ class SplatterBalls(val fileBaseName: String = "splat",
 
         fun draw() {
 
-            val sourceX = startRelX * host.splatExpansion + host.p.width / 2
-            val sourceY = startRelY * host.splatExpansion + host.p.height / 2
+            val sourceX = 0.2f * startRelX * host.splatExpansion + host.p.width / 2
+            val sourceY = 0.2f * startRelY * host.splatExpansion + host.p.height / 2
             val targetX = targetRelX * host.splatExpansion + host.p.width / 2
             val targetY = targetRelY * host.splatExpansion + host.p.height / 2
 
@@ -158,7 +158,7 @@ class SplatterBalls(val fileBaseName: String = "splat",
             val c = host.p.lerpColor(host.splatterFadeAwayColor, color, host.splatAlpha)
 
             // Alpha doesn't seemto be properly lerped or something?  mix in here:
-            host.p.fill(host.p.hue(c), host.p.saturation(c), host.p.brightness(c), host.splatAlpha)
+            host.p.fill(host.p.hue(c), host.p.saturation(c), host.p.brightness(c), 0.8f * host.splatAlpha)
 
             host.p.ellipse(x, y, size, size)
         }
