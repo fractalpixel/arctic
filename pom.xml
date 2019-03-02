@@ -177,7 +177,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        org.rajatietotekniikka.sfäärimato.Sfäärimato
+                                        org.rajatietotekniikka.dragonsofballpit.Demo
                                     </mainClass>
                                 </manifest>
                             </archive>

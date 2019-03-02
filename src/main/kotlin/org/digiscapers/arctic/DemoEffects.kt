@@ -1,12 +1,12 @@
 package org.digiscapers.arctic
 
-import org.rajatietotekniikka.sfäärimato.Sfäärimato
+import org.rajatietotekniikka.dragonsofballpit.Demo
 
 /**
  * Keeps a collection of effects and updates them and stuff.
  * Handles timing.
  */
-class DemoEffects(val surface: Sfäärimato,
+class DemoEffects(val surface: Demo,
                   var lastEffectEndToDemoEndSeconds: Float = 5f) {
 
     val effects = ArrayList<DemoEffect>()

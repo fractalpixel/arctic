@@ -1,6 +1,6 @@
                                        package org.digiscapers.arctic
 
-import org.rajatietotekniikka.sfäärimato.Sfäärimato
+import org.rajatietotekniikka.dragonsofballpit.Demo
 import processing.core.PConstants.HSB
 import java.util.*
 
@@ -20,9 +20,9 @@ abstract class DemoEffect {
 
     val effectRandom = Random()
 
-    lateinit var p: Sfäärimato
+    lateinit var p: Demo
 
-    fun init(surface: Sfäärimato) {
+    fun init(surface: Demo) {
         this.p = surface
         setup(p)
     }
@@ -39,7 +39,7 @@ abstract class DemoEffect {
     val startSeconds: Float get() = startTimeSeconds
     val endSeconds: Float get() = startSeconds + durationSeconds
 
-    abstract fun setup(p: Sfäärimato)
+    abstract fun setup(p: Demo)
 
     fun handleUpdate(currentTime: Float,
                      deltaTime: Float = 1f / 60f) {
@@ -48,7 +48,7 @@ abstract class DemoEffect {
 
         if (currentTime in startSeconds..endSeconds) {
             this.deltaTime = deltaTime
-            relativeEffectTime = Sfäärimato.map(currentTime, startSeconds, endSeconds, 0f, 1f)
+            relativeEffectTime = Demo.map(currentTime, startSeconds, endSeconds, 0f, 1f)
             elapsedEffectTime  = currentTime - startSeconds
 
             // Colors are hue, sat, brightness, alpha, range 0..1f.

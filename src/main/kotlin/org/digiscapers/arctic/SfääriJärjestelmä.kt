@@ -1,6 +1,6 @@
 package org.digiscapers.arctic
 
-import org.rajatietotekniikka.sfäärimato.Sfäärimato
+import org.rajatietotekniikka.dragonsofballpit.Demo
 import java.util.*
 
 /**
@@ -30,7 +30,7 @@ open class SfääriJärjestelmä @JvmOverloads constructor(
     private var nextId = 1
     private var random = Random()
 
-    fun init(pinta: Sfäärimato) {
+    fun init(pinta: Demo) {
         for (i in 1 .. alkumäärä) {
             luoPallo(pinta)
         }
@@ -39,7 +39,7 @@ open class SfääriJärjestelmä @JvmOverloads constructor(
     /**
      * Update and draw balls, can also adjust number of balls.
      */
-    fun updateAndDraw(pinta: Sfäärimato,
+    fun updateAndDraw(pinta: Demo,
                       deltaTime: Float = 1f / 60f,
                       palloMäärä: Int = 10) {
 
@@ -69,12 +69,12 @@ open class SfääriJärjestelmä @JvmOverloads constructor(
 
     }
 
-    protected open fun updateBall(pinta: Sfäärimato,
+    protected open fun updateBall(pinta: Demo,
                                   ball: Sfääri) {
 
     }
 
-    protected fun luoPallo(pinta: Sfäärimato): Sfääri {
+    protected fun luoPallo(pinta: Demo): Sfääri {
         val id = nextId++
         random.setSeed(id.toLong())
         random.setSeed(random.nextLong())
@@ -87,7 +87,7 @@ open class SfääriJärjestelmä @JvmOverloads constructor(
         return pallo
     }
 
-    protected open fun initBall(p: Sfäärimato, ball: Sfääri) {
+    protected open fun initBall(p: Demo, ball: Sfääri) {
 
     }
 
