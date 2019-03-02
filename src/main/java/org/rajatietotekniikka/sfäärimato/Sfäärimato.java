@@ -4,6 +4,9 @@ import ddf.minim.Minim;
 import org.digiscapers.arctic.DemoEffects;
 import org.rajatietotekniikka.sfäärimato.effektit.PalloAvaruus;
 import org.rajatietotekniikka.sfäärimato.effektit.SplatterBalls;
+import org.rajatietotekniikka.sfäärimato.effektit.ScrolleriEffekti;
+import org.rajatietotekniikka.sfäärimato.effektit.Häröpallot;
+import org.rajatietotekniikka.sfäärimato.effektit.PallomeriEfekti;
 import processing.core.PApplet;
 
 
@@ -74,11 +77,12 @@ public class Sfäärimato extends PApplet {
 
         // Setup effects
 ///        effects.addEffect(0f, 35f, new IntroStage());
-//        effects.addEffect(0f, 30f, new Häröpallot());
-        effects.addEffect(0f, 50f, new SplatterBalls());
-        effects.addEffect(49f, 50f, new PalloAvaruus());
-        //effects.addEffect(30f, 50f, new ScrolleriEffekti());
-//        effects.addEffect(5f, 50f, new PallomeriEfekti());
+        effects.addEffect(5f, 30f, new Häröpallot());
+        effects.addEffect(1f, 50f, new ScrolleriEffekti());
+        effects.addEffect(10f, 50f, new PallomeriEfekti());
+        effects.addEffect(24f, 50f, new SplatterBalls());
+        effects.addEffect(75f, 50f, new PalloAvaruus());
+        //
 //        effects.addEffect(5f, 20f, new IrahSfäärit());
 
         // TODO: Add more awesome stages!

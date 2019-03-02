@@ -10,7 +10,7 @@ import java.util.*
  *
  */
 class SplatterBalls(val fileBaseName: String = "splat",
-                    val numberOfFiles: Int = 3,
+                    val numberOfFiles: Int = 5,
                     val startDelay: Float = 0.2f,
                     val splatBallScale: Float = 0.75f,
                     val splatCount: Int = 30000): DemoEffect() {

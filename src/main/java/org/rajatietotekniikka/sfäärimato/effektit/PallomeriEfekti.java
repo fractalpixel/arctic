@@ -133,7 +133,7 @@ public class PallomeriEfekti extends DemoEffect {
         float size =70*scaling;
         float speed = 220*scaling;
         float hue = 0.65f + 0.01f * p.randomGaussian();
-        float sat = 0.80f + 0.05f * p.randomGaussian();
+        float sat = 0.75f + 0.05f * p.randomGaussian();
         float lum = 0.55f + 0.05f * p.randomGaussian();
         float startY = p.height-p.height/4;
         float startX = p.width/5;
